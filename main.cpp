@@ -17,8 +17,8 @@ int main(){
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	//load images and set ap screen
-	screen = SDL_SetVideoMode(900,900,8,SDL_SWSURFACE);
-	sprite = IMG_Load("image/sprite.png");
+	screen = SDL_SetVideoMode(400,400,16,SDL_SWSURFACE);
+	sprite = IMG_Load("image/tudo.png");
 
 	if(sprite == NULL)
 		cout << "ghjklç\n";

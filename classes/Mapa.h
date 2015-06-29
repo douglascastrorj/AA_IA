@@ -19,14 +19,6 @@ public:
 	}
 	~Mapa(){}
 
-	void print(){
-		for (int i = 0; i < DIM; ++i){
-			for(int j = 0 ; j < DIM ; j++)
-				cout << matrix[i][j]<<' ';
-			cout << endl;
-		}
-	}
-
 	SDL_Surface* getSprite(){
 		return this->sprite;
 	}
