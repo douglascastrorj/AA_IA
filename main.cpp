@@ -25,7 +25,7 @@ int main(){
 	SDL_Surface* sprite_player = IMG_Load("image/sprite.png");
 
 	Mapa *m = new Mapa(sprite);
-	Obj *player = new Obj(sprite_player,20);
+	Obj *player = new Obj(sprite_player,15);
 
 
 	SDL_Event event;
@@ -36,6 +36,7 @@ int main(){
 
 		m->blit(screen);
 		player->blit(screen);
+		player->move(m,BLOCK_DIM);
 
 		//handling the events
 		while(SDL_PollEvent(&event)){
@@ -48,10 +49,22 @@ int main(){
 			if(event.type == SDL_KEYDOWN){
 				switch( event.key.keysym.sym )
 				{
-					case SDLK_UP: {  break;}
-					case SDLK_DOWN: {  break;}
-					case SDLK_LEFT:{  break;}
-					case SDLK_RIGHT:{ break;}
+					case SDLK_UP: { 
+						player->setDirection(UP);
+						break;
+					}
+					case SDLK_DOWN: {
+						player->setDirection(DOWN);
+						break;
+					}
+					case SDLK_LEFT:{ 
+						player->setDirection(LEFT); 
+						break;
+					}
+					case SDLK_RIGHT:{ 
+						player->setDirection(RIGHT);
+						break;
+					}
 				}
 			}
 		}

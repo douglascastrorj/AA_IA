@@ -8,21 +8,31 @@
 using namespace std;
 class Mapa
 {
-	char matrix[DIM][DIM];
+	char **matrix;
 	SDL_Surface* sprite;
+
+	char** create2DArray(unsigned height, unsigned width)
+	{
+		char** array2D = 0;
+		array2D = new char*[height];
+
+		for (int h = 0; h < height; h++){
+			array2D[h] = new char[width];
+			for (int w = 0; w < width; w++)	{
+				// fill in some initial values
+				// (filling in zeros would be more logic, but this is just for the example)
+				array2D[h][w] = ' ';
+			}
+		}
+
+		return array2D;
+	}
 public:
 	Mapa(SDL_Surface* sprite){
+		this->matrix = create2DArray(DIM,DIM);
 		this->setSprite(sprite);
 
-		for (int i = 0; i < DIM; ++i){
-			for(int j = 0 ; j < DIM ; j++){
-				// int c = rand() % 2;
-				// if(c > 0) 
-				matrix[i][j] = ' ';
-				// else matrix[i][j] = 'b';
-
-			}
-		}	
+		
 		matrix[1][2] = 'b';	
 		matrix[1][7] = 'b';
 
@@ -60,6 +70,10 @@ public:
 
 	}
 
+	char** getMatrix(){
+		return this->matrix;
+	}
+
 	void blit(SDL_Surface* screen){
 		SDL_Rect pos = {0,0,BLOCK_DIM,BLOCK_DIM};
 		
@@ -73,5 +87,5 @@ public:
 			pos.y += BLOCK_DIM;
 		}
 	}
-	/* data */
+	
 };

@@ -11,8 +11,9 @@
 using namespace std;
 class Obj
 {
-
+	int direction;
 	int spriteNumber;
+	int vel;
 	SDL_Rect currentRect; //position on the sprite
 	SDL_Rect pos; //position on the screen
 	SDL_Surface* sprite; //image of the obj
@@ -25,10 +26,22 @@ public:
 		this->setSpriteNumber(0);
 		this->setSprite(sprite);
 		this->setPos(0,0,spriteDIM,spriteDIM);
-		this->setCurrentRect(0,20,spriteDIM,spriteDIM);
+		this->setCurrentRect(5,25,spriteDIM,spriteDIM);
+		this->setRow(0);
+		this->setCol(0);
+		this->vel = 3;
+		this->setDirection(RIGHT);
 	}
 
 	~Obj(){}
+
+	void setDirection(int direction){
+		this->direction = direction;
+	}
+
+	int getDirection(){
+		return this->direction;
+	}
 
 	void setSpriteNumber(int n){
 		this->spriteNumber = n;
@@ -99,19 +112,53 @@ public:
 
 	}
 
-	void move(SDL_Surface *screen,int direction){
-		switch (direction){
+	void move(Mapa* map,int b){
+		int posx;
+		int newCol;
+
+		int posy;
+		int newRow;
+		switch (this->direction){
 			case RIGHT:
-				this->setCol(this->getCol()+1);
+
+				this->getPos()->x+=this->vel;
+				posx = this->getPos()->x + (this->getPos()->w /2 );
+				newCol = (posx/b);
+				
+				if(map->getMatrix()[this->getRow()][newCol] != 'b')
+					this->setCol(newCol);
+				else this->getPos()->x-=this->vel; //undo the move
+
 				break;
 			case LEFT:
-				this->setCol(this->getCol()-1);
+				this->getPos()->x-=this->vel;
+				posx = this->getPos()->x + (this->getPos()->w /2 );
+				newCol = (posx/b);
+				
+				if(map->getMatrix()[this->getRow()][newCol] != 'b')
+					this->setCol(newCol);
+				else this->getPos()->x+=this->vel; //undo the move
+
 				break;
 			case UP:
-				this->setRow(this->getRow()-1);
+				this->getPos()->y-=this->vel;
+				posy = this->getPos()->y + (this->getPos()->h /2 );
+				newRow = (posy/b);
+				
+				if(map->getMatrix()[newRow][this->getCol()] != 'b')
+					this->setRow(newRow);
+				else this->getPos()->y+=this->vel;//undo the move
+
 				break;
 			case DOWN:
-				this->setRow(this->getRow()+1);
+				this->getPos()->y+=this->vel;
+				posy = this->getPos()->y + (this->getPos()->h /2 );
+				newRow = (posy/b);
+				
+				if(map->getMatrix()[newRow][this->getCol()] != 'b')
+					this->setRow(newRow);
+				else this->getPos()->y-=this->vel;//undo the move
+
 				break;
 		}
 
