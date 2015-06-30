@@ -12,18 +12,53 @@ using namespace std;
 class Obj
 {
 
-	SDL_Rect rect; //position on the sprite
+	int spriteNumber;
+	SDL_Rect currentRect; //position on the sprite
+	SDL_Rect pos; //position on the screen
 	SDL_Surface* sprite; //image of the obj
 	int row,col;
 
 
 public:
 
-	Obj(){
-		
+	Obj(SDL_Surface* sprite,int spriteDIM){
+		this->setSpriteNumber(0);
+		this->setSprite(sprite);
+		this->setPos(0,0,spriteDIM,spriteDIM);
+		this->setCurrentRect(0,20,spriteDIM,spriteDIM);
 	}
 
 	~Obj(){}
+
+	void setSpriteNumber(int n){
+		this->spriteNumber = n;
+	}
+
+	int getSpriteNumber(){
+		return this->spriteNumber;
+	}
+
+	SDL_Rect* getPos(){
+		return &this->pos;
+	}
+
+	void setPos(int x,int y,int w,int h){
+		this->pos.x = x;
+		this->pos.y = y;
+		this->pos.w = w;
+		this->pos.h = h;
+	}
+
+	SDL_Rect* getCurrentRect(){
+		return &this->currentRect;
+	}
+
+	void setCurrentRect(int x,int y,int w,int h){
+		this->currentRect.x = x;
+		this->currentRect.y = y;
+		this->currentRect.w = w;
+		this->currentRect.h = h;
+	}
 
 	void setRow(int row){
 		this->row = row;
@@ -56,7 +91,7 @@ public:
 	
 
 	void blit(SDL_Surface* screen){
-		SDL_BlitSurface(this->getSprite(),NULL,screen,this->getPos());
+		SDL_BlitSurface(this->getSprite(),this->getCurrentRect(),screen,this->getPos());
 	}
 
 	bool colide(Obj obj){

@@ -13,16 +13,41 @@ class Mapa
 public:
 	Mapa(SDL_Surface* sprite){
 		this->setSprite(sprite);
+
 		for (int i = 0; i < DIM; ++i){
 			for(int j = 0 ; j < DIM ; j++){
-				int c = rand() % 2;
-				if(c > 0) 
-					matrix[i][j] = ' ';
-				else matrix[i][j] = 'b';
+				// int c = rand() % 2;
+				// if(c > 0) 
+				matrix[i][j] = ' ';
+				// else matrix[i][j] = 'b';
 
 			}
-				
-		}		
+		}	
+		matrix[1][2] = 'b';	
+		matrix[1][7] = 'b';
+
+		matrix[2][1] = 'b';
+		matrix[2][2] = 'b';
+		matrix[2][4] = 'b';
+		matrix[2][5] = 'b';
+		matrix[2][7] = 'b';
+		matrix[2][8] = 'b';
+
+		matrix[3][2] = 'b';
+		matrix[3][7] = 'b';
+
+		matrix[4][2] = 'b';
+		matrix[4][7] = 'b';
+
+		matrix[5][6] = 'b';
+
+		matrix[7][1] = 'b';
+		matrix[7][4] = 'b';
+		matrix[7][5] = 'b';
+		matrix[7][7] = 'b';
+		matrix[7][8] = 'b';
+
+		matrix[8][1] = 'b';
 	}
 	~Mapa(){}
 

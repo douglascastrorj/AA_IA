@@ -9,9 +9,12 @@
 
 
 #include "classes/Mapa.h"
+#include "classes/Obj.h"
 
 SDL_Surface* sprite = NULL;
 SDL_Surface *screen;
+SDL_Surface* sprite_player ;
+
 using namespace std;
 int main(){
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -19,13 +22,11 @@ int main(){
 	//load images and set ap screen
 	screen = SDL_SetVideoMode(680,440,16,SDL_SWSURFACE);
 	sprite = IMG_Load("image/block.png");
-
-
-	if(sprite == NULL)
-		cout << "ghjklç\n";
-
+	SDL_Surface* sprite_player = IMG_Load("image/sprite.png");
 
 	Mapa *m = new Mapa(sprite);
+	Obj *player = new Obj(sprite_player,20);
+
 
 	SDL_Event event;
 	bool running = true;	
@@ -34,6 +35,7 @@ int main(){
 		int t1 = SDL_GetTicks();
 
 		m->blit(screen);
+		player->blit(screen);
 
 		//handling the events
 		while(SDL_PollEvent(&event)){
