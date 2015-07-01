@@ -14,6 +14,7 @@
 SDL_Surface* sprite = NULL;
 SDL_Surface *screen;
 SDL_Surface* sprite_player ;
+SDL_Surface* fundo;
 
 using namespace std;
 int main(){
@@ -23,6 +24,7 @@ int main(){
 	screen = SDL_SetVideoMode(680,440,16,SDL_SWSURFACE);
 	sprite = IMG_Load("image/block.png");
 	SDL_Surface* sprite_player = IMG_Load("image/sprite.png");
+	fundo = IMG_Load("image/fundo.png");
 
 	Mapa *m = new Mapa(sprite);
 	Obj *player = new Obj(sprite_player,15);
@@ -34,6 +36,7 @@ int main(){
 
 		int t1 = SDL_GetTicks();
 
+		SDL_BlitSurface(fundo,NULL,screen,NULL);
 		m->blit(screen);
 		player->blit(screen);
 		player->move(m,BLOCK_DIM);
