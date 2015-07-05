@@ -3,7 +3,7 @@
 
 // #define BLOCK_DIM 34
 #define BLOCK_DIM 15
-#define DIM 10
+#define DIM 20
 
 using namespace std;
 class Mapa
@@ -58,6 +58,90 @@ public:
 		matrix[7][8] = 'b';
 
 		matrix[8][1] = 'b';
+
+		matrix[1][12] = 'b';	
+		matrix[1][17] = 'b';
+
+		matrix[2][10] = 'b';
+		matrix[2][11] = 'b';
+		matrix[2][14] = 'b';
+		matrix[2][15] = 'b';
+		matrix[2][17] = 'b';
+		matrix[2][18] = 'b';
+
+		matrix[3][12] = 'b';
+		matrix[3][17] = 'b';
+
+		matrix[4][12] = 'b';
+		matrix[4][17] = 'b';
+
+		matrix[5][16] = 'b';
+
+		matrix[7][11] = 'b';
+		matrix[7][14] = 'b';
+		matrix[7][15] = 'b';
+		matrix[7][17] = 'b';
+		matrix[7][18] = 'b';
+
+		matrix[8][11] = 'b';
+
+
+		matrix[11][2] = 'b';	
+		matrix[11][7] = 'b';
+
+		matrix[12][1] = 'b';
+		matrix[12][2] = 'b';
+		matrix[12][4] = 'b';
+		matrix[12][5] = 'b';
+		matrix[12][7] = 'b';
+		matrix[12][8] = 'b';
+
+		matrix[13][2] = 'b';
+		matrix[13][7] = 'b';
+
+		matrix[14][2] = 'b';
+		matrix[14][7] = 'b';
+
+		matrix[15][6] = 'b';
+
+		matrix[17][1] = 'b';
+		matrix[17][4] = 'b';
+		matrix[17][5] = 'b';
+		matrix[17][7] = 'b';
+		matrix[17][8] = 'b';
+
+		matrix[18][1] = 'b';
+
+		matrix[11][12] = 'b';	
+		matrix[11][17] = 'b';
+
+		matrix[12][10] = 'b';
+		matrix[12][11] = 'b';
+		matrix[12][14] = 'b';
+		matrix[12][15] = 'b';
+		matrix[12][17] = 'b';
+		matrix[12][18] = 'b';
+
+		matrix[13][12] = 'b';
+		matrix[13][17] = 'b';
+
+		matrix[14][12] = 'b';
+		matrix[14][17] = 'b';
+
+		matrix[15][16] = 'b';
+
+		matrix[17][11] = 'b';
+		matrix[17][14] = 'b';
+		matrix[17][15] = 'b';
+		matrix[17][17] = 'b';
+		matrix[17][18] = 'b';
+
+		matrix[18][11] = 'b';
+
+
+
+
+
 	}
 	~Mapa(){}
 
