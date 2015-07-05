@@ -29,6 +29,10 @@ int main(){
 	Mapa *m = new Mapa(sprite);
 	Obj *player = new Obj(sprite_player,15);
 
+	Obj *ghost = new Obj(sprite_player,15);
+
+	ghost->getCurrentRect()->y = 85;
+	ghost->setVel(3);
 
 	SDL_Event event;
 	bool running = true;	
@@ -39,7 +43,9 @@ int main(){
 		SDL_BlitSurface(fundo,NULL,screen,NULL);
 		m->blit(screen);
 		player->blit(screen);
-		player->move(m,BLOCK_DIM);
+		player->move(m,BLOCK_DIM,DIM);
+		ghost->blit(screen);
+		ghost->move(m,BLOCK_DIM,DIM);
 
 		//handling the events
 		while(SDL_PollEvent(&event)){

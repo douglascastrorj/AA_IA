@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 
-#define BLOCK_DIM 34
-
+// #define BLOCK_DIM 34
+#define BLOCK_DIM 15
 #define DIM 10
 
 using namespace std;
@@ -76,12 +76,13 @@ public:
 
 	void blit(SDL_Surface* screen){
 		SDL_Rect pos = {0,0,BLOCK_DIM,BLOCK_DIM};
+		SDL_Rect sprite_pos = {0,0,BLOCK_DIM,BLOCK_DIM};
 		
 		for (int i = 0; i < DIM; i++){
 			pos.x = 0;
 			for(int j = 0; j<DIM ;j++){
 				if(this->matrix[i][j] == 'b')
-					SDL_BlitSurface(this->getSprite(),NULL,screen,&pos);
+					SDL_BlitSurface(this->getSprite(),&sprite_pos,screen,&pos);
 				pos.x += BLOCK_DIM;
 			}
 			pos.y += BLOCK_DIM;

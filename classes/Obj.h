@@ -29,11 +29,19 @@ public:
 		this->setCurrentRect(5,25,spriteDIM,spriteDIM);
 		this->setRow(0);
 		this->setCol(0);
-		this->vel = 3;
+		this->vel = 2;
 		this->setDirection(RIGHT);
 	}
 
 	~Obj(){}
+
+	void setVel(int vel){
+		this->vel = vel;
+	}
+
+	int getVel(){
+		return this->vel;
+	}
 
 	void setDirection(int direction){
 		this->direction = direction;
@@ -112,7 +120,8 @@ public:
 
 	}
 
-	void move(Mapa* map,int b){
+	// b = BLOCK_DIM
+	void move(Mapa* map,int b,int d){
 		int posx;
 		int newCol;
 
@@ -125,7 +134,7 @@ public:
 				posx = this->getPos()->x + (this->getPos()->w /2 );
 				newCol = (posx/b);
 				
-				if(map->getMatrix()[this->getRow()][newCol] != 'b')
+				if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' )
 					this->setCol(newCol);
 				else this->getPos()->x-=this->vel; //undo the move
 
@@ -135,7 +144,7 @@ public:
 				posx = this->getPos()->x + (this->getPos()->w /2 );
 				newCol = (posx/b);
 				
-				if(map->getMatrix()[this->getRow()][newCol] != 'b')
+				if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' )
 					this->setCol(newCol);
 				else this->getPos()->x+=this->vel; //undo the move
 
@@ -145,7 +154,7 @@ public:
 				posy = this->getPos()->y + (this->getPos()->h /2 );
 				newRow = (posy/b);
 				
-				if(map->getMatrix()[newRow][this->getCol()] != 'b')
+				if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b')
 					this->setRow(newRow);
 				else this->getPos()->y+=this->vel;//undo the move
 
@@ -155,7 +164,7 @@ public:
 				posy = this->getPos()->y + (this->getPos()->h /2 );
 				newRow = (posy/b);
 				
-				if(map->getMatrix()[newRow][this->getCol()] != 'b')
+				if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b')
 					this->setRow(newRow);
 				else this->getPos()->y-=this->vel;//undo the move
 
