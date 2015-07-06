@@ -30,11 +30,27 @@ int main(){
 	Mapa *m = new Mapa(sprite);
 	Obj *player = new Obj(sprite_player,15);
 
-	Ghost *ghost = new Ghost(sprite_player,15);
+	Ghost *ghost1 = new Ghost(sprite_player,15);
+	Ghost *ghost2= new Ghost(sprite_player,15);
+	Ghost *ghost3 = new Ghost(sprite_player,15);
+	Ghost *ghost4 = new Ghost(sprite_player,15);
+	Ghost *ghost5 = new Ghost(sprite_player,15);
+
+	ghost2->getPos()->x = 13*15;
+	ghost2->getPos()->y = 13*15;
+
+	ghost3->getPos()->x = 17*15;
+	ghost3->getPos()->y = 19*15;
+
+	ghost4->getPos()->x = 5*15;
+	ghost4->getPos()->y = 5*15;
+
+	ghost5->getPos()->x = 8*15;
+	ghost5->getPos()->y = 10*15;
+
 
 	// ghost->getCurrentRect()->y = 85;
 	// ghost->setVel(3);
-
 	SDL_Event event;
 	bool running = true;	
 	while(running){
@@ -49,9 +65,21 @@ int main(){
 		int col = player->getCol();
 		player->move(m,BLOCK_DIM,DIM);
 
-		ghost->move(m,BLOCK_DIM,DIM,col,row);
-		// if(row != player->getRow() || col != player->getCol())
-		ghost->blit(screen);
+		// ghost->move(m,BLOCK_DIM,DIM);
+		ghost1->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost1->blit(screen);
+
+		ghost2->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost2->blit(screen);
+
+		ghost3->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost3->blit(screen);
+
+		ghost4->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost4->blit(screen);
+
+		ghost5->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost5->blit(screen);
 		
 		// ghost->move(m,BLOCK_DIM,DIM);
 		// ghost->setDirection(DOWN);
@@ -67,6 +95,7 @@ int main(){
 			if(event.type == SDL_KEYDOWN){
 				switch( event.key.keysym.sym )
 				{
+
 					case SDLK_UP: { 
 						player->setDirection(UP);
 						break;
