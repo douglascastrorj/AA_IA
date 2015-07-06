@@ -25,7 +25,7 @@ public:
 	Obj(SDL_Surface* sprite,int spriteDIM){
 		this->setSpriteNumber(0);
 		this->setSprite(sprite);
-		this->setPos(0,0,spriteDIM,spriteDIM);
+		this->setPos(100,0,spriteDIM,spriteDIM);
 		this->setCurrentRect(5,25,spriteDIM,spriteDIM);
 		this->setRow(0);
 		this->setCol(0);
@@ -127,7 +127,7 @@ public:
 
 		int posy;
 		int newRow;
-		switch (this->direction){
+		switch (this->getDirection()){
 			case RIGHT:
 
 				this->getPos()->x+=this->vel;

@@ -10,6 +10,7 @@
 
 #include "classes/Mapa.h"
 #include "classes/Obj.h"
+#include "classes/Ghost.h"
 
 SDL_Surface* sprite = NULL;
 SDL_Surface *screen;
@@ -29,10 +30,10 @@ int main(){
 	Mapa *m = new Mapa(sprite);
 	Obj *player = new Obj(sprite_player,15);
 
-	Obj *ghost = new Obj(sprite_player,15);
+	Ghost *ghost = new Ghost(sprite_player,15);
 
-	ghost->getCurrentRect()->y = 85;
-	ghost->setVel(3);
+	// ghost->getCurrentRect()->y = 85;
+	// ghost->setVel(3);
 
 	SDL_Event event;
 	bool running = true;	
@@ -43,9 +44,17 @@ int main(){
 		SDL_BlitSurface(fundo,NULL,screen,NULL);
 		m->blit(screen);
 		player->blit(screen);
+
+		int row = player->getRow();
+		int col = player->getCol();
 		player->move(m,BLOCK_DIM,DIM);
+
+		ghost->move(m,BLOCK_DIM,DIM,col,row);
+		// if(row != player->getRow() || col != player->getCol())
 		ghost->blit(screen);
-		ghost->move(m,BLOCK_DIM,DIM);
+		
+		// ghost->move(m,BLOCK_DIM,DIM);
+		// ghost->setDirection(DOWN);
 
 		//handling the events
 		while(SDL_PollEvent(&event)){
