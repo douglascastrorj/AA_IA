@@ -7,7 +7,7 @@
 
 using namespace std;
 class Mapa
-{
+{	
 	char **matrix;
 	SDL_Surface* sprite;
 
@@ -144,6 +144,10 @@ public:
 
 	}
 	~Mapa(){}
+
+	int getDIM(){
+		return DIM;
+	}
 
 	SDL_Surface* getSprite(){
 		return this->sprite;

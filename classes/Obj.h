@@ -29,7 +29,7 @@ public:
 		this->setCurrentRect(5,25,spriteDIM,spriteDIM);
 		this->setRow(0);
 		this->setCol(0);
-		this->vel = 3;
+		this->vel = 2;
 		this->setDirection(RIGHT);
 	}
 

@@ -1,6 +1,7 @@
 #define FPS 30
 
 #include <iostream>
+#include <time.h>
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -16,6 +17,15 @@ SDL_Surface* sprite = NULL;
 SDL_Surface *screen;
 SDL_Surface* sprite_player ;
 SDL_Surface* fundo;
+
+void sleepcp(int milliseconds) // cross-platform sleep function
+	{
+	    clock_t time_end;
+	    time_end = clock() + milliseconds * CLOCKS_PER_SEC/1000;
+	    while (clock() < time_end)
+	    {
+	    }
+	}
 
 using namespace std;
 int main(){
@@ -66,20 +76,20 @@ int main(){
 		player->move(m,BLOCK_DIM,DIM);
 
 		// ghost->move(m,BLOCK_DIM,DIM);
-		ghost1->move2(m,BLOCK_DIM,DIM,col,row);
+		ghost1->move2(m,BLOCK_DIM,DIM,row,col);
 		ghost1->blit(screen);
 
-		ghost2->move2(m,BLOCK_DIM,DIM,col,row);
-		ghost2->blit(screen);
+		// ghost2->move2(m,BLOCK_DIM,DIM,col,row);
+		// ghost2->blit(screen);
 
-		ghost3->move2(m,BLOCK_DIM,DIM,col,row);
-		ghost3->blit(screen);
+		// ghost3->move2(m,BLOCK_DIM,DIM,col,row);
+		// ghost3->blit(screen);
 
-		ghost4->move2(m,BLOCK_DIM,DIM,col,row);
-		ghost4->blit(screen);
+		// ghost4->move2(m,BLOCK_DIM,DIM,col,row);
+		// ghost4->blit(screen);
 
-		ghost5->move2(m,BLOCK_DIM,DIM,col,row);
-		ghost5->blit(screen);
+		// ghost5->move2(m,BLOCK_DIM,DIM,col,row);
+		// ghost5->blit(screen);
 		
 		// ghost->move(m,BLOCK_DIM,DIM);
 		// ghost->setDirection(DOWN);
@@ -125,6 +135,7 @@ int main(){
 		
 
 		SDL_Flip(screen);
+		// sleepcp(10000);
 
 	}
 	SDL_Quit();
