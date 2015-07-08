@@ -79,21 +79,19 @@ int main(){
 		ghost1->move2(m,BLOCK_DIM,DIM,row,col);
 		ghost1->blit(screen);
 
-		// ghost2->move2(m,BLOCK_DIM,DIM,col,row);
-		// ghost2->blit(screen);
+		ghost2->move2(m,BLOCK_DIM,DIM,row+1,col);
+		ghost2->blit(screen);
 
-		// ghost3->move2(m,BLOCK_DIM,DIM,col,row);
-		// ghost3->blit(screen);
+		ghost3->move2(m,BLOCK_DIM,DIM,row,col+1);
+		ghost3->blit(screen);
 
-		// ghost4->move2(m,BLOCK_DIM,DIM,col,row);
-		// ghost4->blit(screen);
+		ghost4->move2(m,BLOCK_DIM,DIM,row-1,col);
+		ghost4->blit(screen);
 
-		// ghost5->move2(m,BLOCK_DIM,DIM,col,row);
-		// ghost5->blit(screen);
+		ghost5->move2(m,BLOCK_DIM,DIM,row,col-1);
+		ghost5->blit(screen);
 		
-		// ghost->move(m,BLOCK_DIM,DIM);
-		// ghost->setDirection(DOWN);
-
+		
 		//handling the events
 		while(SDL_PollEvent(&event)){
 			if( event.type==SDL_QUIT){

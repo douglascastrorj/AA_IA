@@ -20,7 +20,7 @@ public:
 	Ghost(SDL_Surface* sprite,int spriteDIM):Obj( sprite, spriteDIM){
 		Obj(sprite,spriteDIM);
 		this->getCurrentRect()->y = 85;
-		this->setVel(2);
+		this->setVel(1);
 		this->getPos()->x = 0;
 
 	}
@@ -33,8 +33,8 @@ public:
 	void move2(Mapa* map,int b,int d,int rowDest,int colDest){
 		int vc = 0;
 		auto answer = Astar(map->getMatrix(),map->getDIM(),map->getDIM(), Point(this->getRow(),this->getCol()), Point(rowDest, colDest ), vc );
-	    for(int i = 0; i < answer.size(); i++)
-	        cout << "linha " << answer[i].first << " coluna " << answer[i].second <<endl;
+	    // for(int i = 0; i < answer.size(); i++)
+	    //     cout << "linha " << answer[i].first << " coluna " << answer[i].second <<endl;
 		
 	    // for(int i = 0; i < answer.size(); i++)
 	    //     cout <<"Col: "<<  answer[i].first << " Row: " << answer[i].second <<endl;
@@ -42,8 +42,8 @@ public:
 	    if(answer.size() > 0){
 		    int row = answer[answer.size()-1].first;
 		    int col = answer[answer.size()-1].second;
-			cout <<"TEM Q IR PARA Col: "<<  col<< " Row: " <<row <<endl;	
-			cout << "ESTOU EM col " << this->getCol() << " ROW " << this->getRow() <<endl;	
+			// cout <<"TEM Q IR PARA Col: "<<  col<< " Row: " <<row <<endl;	
+			// cout << "ESTOU EM col " << this->getCol() << " ROW " << this->getRow() <<endl;	
 
 			if(this->getCol() < col) this->setDirection(RIGHT);
 		    else if (this->getCol() > col ) this->setDirection(LEFT);	    	
@@ -51,14 +51,14 @@ public:
 	    	else if (this->getRow() > row ) this->setDirection(UP);
 
 	    	// cout << this->getDirection() << endl;
-	    	if (this->getDirection() == RIGHT)
-	    		cout << "RIGHT" <<endl;
-	    	if (this->getDirection() == LEFT)
-	    		cout << "LEFT" <<endl;
-	    	if (this->getDirection() == DOWN)
-	    		cout << "UP" <<endl;
-	    	if (this->getDirection() == UP)
-	    		cout << "DOWN" <<endl;
+	    	// if (this->getDirection() == RIGHT)
+	    	// 	cout << "RIGHT" <<endl;
+	    	// if (this->getDirection() == LEFT)
+	    	// 	cout << "LEFT" <<endl;
+	    	// if (this->getDirection() == DOWN)
+	    	// 	cout << "UP" <<endl;
+	    	// if (this->getDirection() == UP)
+	    	// 	cout << "DOWN" <<endl;
 
 	    	int posx;
 			int newCol;
