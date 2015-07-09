@@ -17,7 +17,7 @@ class Ghost : public Obj
 
 public:
 
-	Ghost(SDL_Surface* sprite,int spriteDIM):Obj( sprite, spriteDIM){
+	Ghost(SDL_Surface* sprite,int spriteDIM):  Obj( sprite, spriteDIM){
 		Obj(sprite,spriteDIM);
 		this->getCurrentRect()->y = 85;
 		this->setVel(1);
@@ -27,11 +27,20 @@ public:
 
 	~Ghost(){}
 
+	void setDirection(int direction){
+		this->direction = direction;
+	}
+
+	int getDirection(){
+		return this->direction;
+	}
 	
 
 	//map , pacman coordinates
-	void move2(Mapa* map,int b,int d,int rowDest,int colDest){
+	void move2(Mapa* map,int b,int d,Obj* player){
 		int vc = 0;
+		int rowDest = player->getRow();
+		int colDest = player->getCol();
 		auto answer = Astar(map->getMatrix(),map->getDIM(),map->getDIM(), Point(this->getRow(),this->getCol()), Point(rowDest, colDest ), vc );
 	    // for(int i = 0; i < answer.size(); i++)
 	    //     cout << "linha " << answer[i].first << " coluna " << answer[i].second <<endl;
@@ -72,8 +81,11 @@ public:
 					posx = this->getPos()->x + (this->getPos()->w /2 );
 					newCol = (posx/b);
 					
-					if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' )
+					if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' ){
+						map->getMatrix()[this->getRow()][this->getCol()] = ' ';
 						this->setCol(newCol);
+						map->getMatrix()[this->getRow()][this->getCol()] = 'g';
+					}
 					else this->getPos()->x-=this->getVel(); //undo the move
 
 					break;
@@ -82,8 +94,11 @@ public:
 					posx = this->getPos()->x + (this->getPos()->w /2 );
 					newCol = (posx/b);
 					
-					if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' )
+					if(newCol < d && map->getMatrix()[this->getRow()][newCol] != 'b' ){
+						map->getMatrix()[this->getRow()][this->getCol()] = ' ';
 						this->setCol(newCol);
+						map->getMatrix()[this->getRow()][this->getCol()] = 'g';
+					}
 					else this->getPos()->x+=this->getVel(); //undo the move
 
 					break;
@@ -92,8 +107,12 @@ public:
 					posy = this->getPos()->y + (this->getPos()->h /2 );
 					newRow = (posy/b);
 					
-					if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b')
+					if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b'){
+						map->getMatrix()[this->getRow()][this->getCol()] = ' ';
 						this->setRow(newRow);
+						map->getMatrix()[this->getRow()][this->getCol()] = 'g';
+					}
+						
 					else this->getPos()->y+=this->getVel();//undo the move
 
 					break;
@@ -102,8 +121,11 @@ public:
 					posy = this->getPos()->y + (this->getPos()->h /2 );
 					newRow = (posy/b);
 					
-					if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b')
+					if(newRow < d && map->getMatrix()[newRow][this->getCol()] != 'b'){
+						map->getMatrix()[this->getRow()][this->getCol()] = ' ';
 						this->setRow(newRow);
+						map->getMatrix()[this->getRow()][this->getCol()] = 'g';
+					}
 					else this->getPos()->y-=this->getVel();//undo the move
 
 					break;

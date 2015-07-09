@@ -11,14 +11,15 @@
 using namespace std;
 class Obj
 {
-	int direction;
+	
 	int spriteNumber;
 	int vel;
 	SDL_Rect currentRect; //position on the sprite
 	SDL_Rect pos; //position on the screen
 	SDL_Surface* sprite; //image of the obj
 	int row,col;
-
+protected:
+	int direction;
 
 public:
 
@@ -44,6 +45,15 @@ public:
 	}
 
 	void setDirection(int direction){
+		if(direction == LEFT)
+			this->getCurrentRect()->y = 5;
+		else if (direction == RIGHT)
+			this->getCurrentRect()->y = 25;
+		else if(direction == UP)
+			this->getCurrentRect()->y = 45;
+		else 
+			this->getCurrentRect()->y = 65;
+
 		this->direction = direction;
 	}
 

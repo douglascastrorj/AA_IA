@@ -22,6 +22,7 @@ const int mHeight = 1000;
 // int mapHeight = 20;
 
 const char obstacle = 'b';
+const char ghost = 'g';
 
 // graph for back tracking path
 Point cameFrom[mWidth][mHeight];
@@ -101,7 +102,7 @@ vector<Point> Astar(char** bitmap,int mapWidth,int mapHeight, Point start, Point
     {
 
         if( x >= mapWidth || x < 0 || y >= mapHeight || y < 0 ) return;
-        if( bitmap[x][y] == obstacle ) return;
+        if( bitmap[x][y] == obstacle || bitmap[x][y] == ghost ) return;
 
 //        if( visited[x][y] && step > bitmap[x][y] ) return;
         if( visited[x][y] ) return;
@@ -124,12 +125,19 @@ vector<Point> Astar(char** bitmap,int mapWidth,int mapHeight, Point start, Point
     };
 
     // special case if start point is an obstacle ignore it
-    if( bitmap[ start.first ][ start.second ] == obstacle ) {
+    if( bitmap[ start.first ][ start.second ] == obstacle  ) {
         bitmap[ start.first ][ start.second ] = 0;
 
         push( start, start.first, start.second, 0,mapWidth,mapHeight );
 
         bitmap[ start.first ][ start.second ] = obstacle;
+    }
+    else if( bitmap[ start.first ][ start.second ] == ghost  ) {
+        bitmap[ start.first ][ start.second ] = 0;
+
+        push( start, start.first, start.second, 0,mapWidth,mapHeight );
+
+        bitmap[ start.first ][ start.second ] = ghost;
     }
     else {
         push( start, start.first, start.second, 0,mapWidth,mapHeight);
