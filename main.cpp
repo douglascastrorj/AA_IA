@@ -87,7 +87,9 @@ int main(){
 
 		ghost5->move2(m,BLOCK_DIM,DIM,player);
 		ghost5->blit(screen);
-		
+
+		cout <<"ghost  Row "<< ghost1->getRow() << " col" << ghost1->getCol() <<endl;
+		cout << "player Row "<<player->getRow() << " col" << player->getCol() <<endl;
 		
 		//handling the events
 		while(SDL_PollEvent(&event)){

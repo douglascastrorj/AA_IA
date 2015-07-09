@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include <stdlib.h>
+
 #define RIGHT 1
 #define LEFT 2
 #define UP 3
@@ -125,9 +127,10 @@ public:
 		SDL_BlitSurface(this->getSprite(),this->getCurrentRect(),screen,this->getPos());
 	}
 
-	bool colide(Obj obj){
+	bool colide(Obj* obj){
+		if(this->getRow() == obj->getRow() && this->getCol() == obj->getCol())
+			return true;
 		return false;
-
 	}
 
 	// b = BLOCK_DIM

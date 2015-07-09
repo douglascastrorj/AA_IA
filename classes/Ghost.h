@@ -42,32 +42,16 @@ public:
 		int rowDest = player->getRow();
 		int colDest = player->getCol();
 		auto answer = Astar(map->getMatrix(),map->getDIM(),map->getDIM(), Point(this->getRow(),this->getCol()), Point(rowDest, colDest ), vc );
-	    // for(int i = 0; i < answer.size(); i++)
-	    //     cout << "linha " << answer[i].first << " coluna " << answer[i].second <<endl;
-		
-	    // for(int i = 0; i < answer.size(); i++)
-	    //     cout <<"Col: "<<  answer[i].first << " Row: " << answer[i].second <<endl;
-
+	    if(this->colide(player))
+	    	cout<<"Colidiu"<<endl;
 	    if(answer.size() > 0){
 		    int row = answer[answer.size()-1].first;
 		    int col = answer[answer.size()-1].second;
-			// cout <<"TEM Q IR PARA Col: "<<  col<< " Row: " <<row <<endl;	
-			// cout << "ESTOU EM col " << this->getCol() << " ROW " << this->getRow() <<endl;	
 
 			if(this->getCol() < col) this->setDirection(RIGHT);
 		    else if (this->getCol() > col ) this->setDirection(LEFT);	    	
 	    	else if (this->getRow() < row )this->setDirection(DOWN);
 	    	else if (this->getRow() > row ) this->setDirection(UP);
-
-	    	// cout << this->getDirection() << endl;
-	    	// if (this->getDirection() == RIGHT)
-	    	// 	cout << "RIGHT" <<endl;
-	    	// if (this->getDirection() == LEFT)
-	    	// 	cout << "LEFT" <<endl;
-	    	// if (this->getDirection() == DOWN)
-	    	// 	cout << "UP" <<endl;
-	    	// if (this->getDirection() == UP)
-	    	// 	cout << "DOWN" <<endl;
 
 	    	int posx;
 			int newCol;
@@ -131,9 +115,12 @@ public:
 					break;
 			}    
 		
-	    } 
-	    
-
+	    }else{
+	    	if(this->getCol() < colDest) this->setDirection(RIGHT);
+		    else if (this->getCol() > colDest ) this->setDirection(LEFT);	    	
+	    	else if (this->getRow() < rowDest )this->setDirection(DOWN);
+	    	else if (this->getRow() > rowDest ) this->setDirection(UP);
+	    }
 
 	}
 	
